@@ -17,7 +17,7 @@ makeCacheMatrix <- function(x = matrix()) {
 ## cacheSolve should return the inverse of the matrix if it hasn't changed and if it was calculated above
 cacheSolve <- function(x, ...) {
         v<- x$getinv()
-        if(!is.null(v)){ #checks to see if inverse has been calculated
+        if(!is.null(v)){ #checks to see if matrix has changed
                 message("getting cached data")
                 return (v)
         }
