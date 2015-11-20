@@ -1,34 +1,30 @@
-#how do I make this work?
 #These functions can store and return the inverse of a matrix.
 #This is expensive computationally so the inverse is cached once calculated.
 makeCacheMatrix <- function(x = matrix()) {
-        m <- NULL
+        v <- NULL
         set <- function(y) {
                 x <<- y
-                m <<- NULL
+                v <<- NULL
         } #changes the matrix stored in the main function
         get <- function() x #returns the matrix x stored in the main function
-        setinv <- function(solve(c)) m <<- mean #store the value of the input
-        getinv <- function() m #return the value in setinv
+        setinv <- function(solve) v <<- inv #store the value of the input
+        getinv <- function() v #return the value in setinv
         list(set = set, get = get,
              setinv = setinv,
              getinv = getinv) #stores all the functions
 }
-}
-
 
 ## cacheSolve should return the inverse of the matrix if it hasn't changed and if it was calculated above
 cacheSolve <- function(x, ...) {
-        m<- x$getinv()
-        if(!is.null(m)){
+        v<- x$getinv()
+        if(!is.null(v)){ #checks to see if inverse has been calculated
                 message("getting cached data")
-                return (m)
+                return (v)
         }
         data <- x$get()
-        m <- solve(data, ...)
-        x$setinv(m)
-        m
+        v <- solve(data, ...)
+        x$setinv(v)
+        v
 }
 ## Return a matrix that is the inverse of 'x'
-#solve(c) %*% c - from me - this should be the function to use
-#will this push ever work?
+
